@@ -1,0 +1,11 @@
+.centerer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.btn:hover {
+    background-color: #3CB371;
+    color: white;
+}

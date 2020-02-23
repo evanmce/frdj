@@ -1,15 +1,12 @@
 from app import app, db
-from app.forms import LoginForm, RegistrationForm
-from app.models import User
+from app.forms import LoginForm, RegistrationForm, AddFoodForm
+from app.models import User, Food
 from flask import render_template, redirect, url_for, flash
 from flask_login import current_user, login_user, logout_user, login_required
 
-@app.route('/')
-@app.route('/index')
-@login_required
-def index():
-    user = {'username': 'evanmce'}
-    return render_template('index.html', title='Home', user=user)
+#   ---------------------------------------------------------------------
+#   Login / Authentication
+#   ---------------------------------------------------------------------
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -43,3 +40,24 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
+#   ---------------------------------------------------------------------
+#   Home / About
+#   ---------------------------------------------------------------------
+
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
+@login_required
+def index():
+    form = AddFoodForm()
+    if form.validate_on_submit():
+        food = Food(name=form.name.data, food_type=form.food_type.data)
+        db.session.add(food)
+        db.session.commit()
+        flash('{} added to your FRDJ'.format(form.name.data))
+        return redirect(url_for('index'))
+    return render_template('index.html', title='Home', form=form)
+
+@app.route('/about')
+def about():
+    return render_template('about.html', title='About')

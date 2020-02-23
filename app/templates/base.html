@@ -19,6 +19,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('index') }}" class="navlink">Home</a></li>
+                    <li><a href="{{ url_for('about') }}" class="navlink">About</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {% if current_user.is_anonymous %}
@@ -42,4 +43,5 @@
 {{ super() }}
     <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/navbar.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/forms.css') }}">
+    <script src="https://kit.fontawesome.com/aaedcd4e21.js" crossorigin="anonymous"></script>
 {% endblock %}

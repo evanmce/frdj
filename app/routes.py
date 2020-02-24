@@ -51,12 +51,13 @@ def register():
 def index():
     form = AddFoodForm()
     if form.validate_on_submit():
-        food = Food(name=form.name.data, food_type=form.food_type.data)
+        food = Food(name=form.name.data, food_type=form.food_type.data, user_id=current_user.id)
         db.session.add(food)
         db.session.commit()
         flash('{} added to your FRDJ'.format(form.name.data))
         return redirect(url_for('index'))
-    return render_template('index.html', title='Home', form=form)
+    foods = User.query.filter_by(username=current_user.username).first().foods.all()
+    return render_template('index.html', title='Home', form=form, foods=foods)
 
 @app.route('/about')
 def about():

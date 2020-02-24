@@ -12,27 +12,14 @@
     <div class="container">
         <div class= "row, fa-3x">
             <div class="col-md-4, iconbox">
-                <i class="fas fa-apple-alt fa-border"> Fruits</i>
-            </div>
-            <div class="col-md-4">
-                <i class="fas fa-carrot"> Vegetables</i>
-            </div>
-            <div class="col-md-4">
-                <i class="fas fa-bread-slice"> Grains</i>
-            </div>
-            <div class="col-md-4">
-                <i class="fas fa-drumstick-bite"> Meat</i>
-            </div>
-            <div class="col-md-4">
-                <i class="fas fa-fish"> Seafood</i>
-            </div>
-            <div class="col-md-4">
-                <i class="fas fa-cheese"> Dairy</i>
-            </div>
-            <div class="col-md-4">
-                <i class="fas fa-pepper-hot"> Spices</i>
+                <a class="btn btn-primary" data-toggle="collapse"><i class="fas fa-apple-alt"> Fruits</i></a>
             </div>
         </div>
+        <ul>
+            {% for food in foods %}
+                <li>{{ food.name }}</li>
+            {% endfor %}
+        </ul>      
     </div>
 {% endblock %}
 

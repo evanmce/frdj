@@ -2,31 +2,104 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
+
     <div class="container">
         <h1>Hi, {{ current_user.username }}</h1>
         {% if form %}
             {{ wtf.quick_form(form) }}
         {% endif %}
-    </div>
-    <hr>
-    <div class="container">
+        <hr>
         <div class= "row, fa-3x">
             <div class="col-md-4, iconbox">
-                <i class="fas fa-apple-alt"> Fruits</i>
+                <i class="fas fa-apple-alt" data-toggle="collapse" href="#fruit_collapse"> Fruits</i>
             </div>
         </div>
-        <div class="row">
-            <ul>
-                {% for food in foods %}
-                    <li>{{ food.name }}</li>
+        <div id="fruit_collapse" class="row, panel-collapse collapse">
+            <ul class="list-group">
+                {% for food in foods[0] %}
+                    <li class="list-group-item">{{ food.name }}</li>
                 {% endfor %}
             </ul>
         </div>
+        <hr>
         <div class="row, fa-3x">
-            <div class="col-md-4">
-                <i class="fas fa-carrot"> Vegetables</i>
+            <div class="col-md-4, iconbox">
+                <i class="fas fa-carrot" data-toggle="collapse" href="#vegetable_collapse"> Vegetables</i>
             </div>
-        </div>    
+        </div>
+        <div id="vegetable_collapse" class="row, panel-collapse collapse">
+            <ul class="list-group">
+                {% for food in foods[1] %}
+                    <li class="list-group-item">{{ food.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <hr>
+        <div class="row, fa-3x">
+            <div class="col-md-4, iconbox">
+                <i class="fas fa-bread-slice" data-toggle="collapse" href="#grain_collapse"> Grains</i>
+            </div>
+        </div>
+        <div id="grain_collapse" class="row, panel-collapse collapse">
+            <ul class="list-group">
+                {% for food in foods[2] %}
+                    <li class="list-group-item">{{ food.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <hr>
+        <div class="row, fa-3x">
+            <div class="col-md-4, iconbox">
+                <i class="fas fa-drumstick-bite" data-toggle="collapse" href="#meat_collapse"> Meat</i>
+            </div>
+        </div>
+        <div id="meat_collapse" class="row, panel-collapse collapse">
+            <ul class="list-group">
+                {% for food in foods[3] %}
+                    <li class="list-group-item">{{ food.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <hr> 
+        <div class="row, fa-3x">
+            <div class="col-md-4, iconbox">
+                <i class="fas fa-fish" data-toggle="collapse" href="#seafood_collapse"> Seafood</i>
+            </div>
+        </div>
+        <div id="seafood_collapse" class="row, panel-collapse collapse">
+            <ul class="list-group">
+                {% for food in foods[4] %}
+                    <li class="list-group-item">{{ food.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <hr> 
+        <div class="row, fa-3x">
+            <div class="col-md-4, iconbox">
+                <i class="fas fa-cheese" data-toggle="collapse" href="#dairy_collapse"> Dairy</i>
+            </div>
+        </div>
+        <div id="dairy_collapse" class="row, panel-collapse collapse">
+            <ul class="list-group">
+                {% for food in foods[5] %}
+                    <li class="list-group-item">{{ food.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <hr>
+        <div class="row, fa-3x">
+            <div class="col-md-4, iconbox">
+                <i class="fas fa-pepper-hot" data-toggle="collapse" href="#spices_collapse"> Spices</i>
+            </div>
+        </div>
+        <div id="spices_collapse" class="row, panel-collapse collapse">
+            <ul class="list-group">
+                {% for food in foods[6] %}
+                    <li class="list-group-item">{{ food.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <hr>     
     </div>
 {% endblock %}
 

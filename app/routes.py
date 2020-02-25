@@ -62,12 +62,16 @@ def index():
         db.session.commit()
         flash('{} added to your FRDJ'.format(form.name.data))
         return redirect(url_for('index'))
-    foods = User.query.filter_by(username=current_user.username).first().foods.all()
+    foods = User.query.filter_by(username=current_user.username).first().get_food_list_by_type()
     return render_template('index.html', title='Home', form=form, foods=foods)
 
 @app.route('/about')
 def about():
     return render_template('about.html', title='About')
+
+#   ---------------------------------------------------------------------
+#   Recipes
+#   ---------------------------------------------------------------------
 
 @app.route('/recipe', methods=['GET', 'POST'])
 @login_required

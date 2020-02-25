@@ -35,16 +35,17 @@
                                 </div>
                             </div>
                             
-                            
-                            <div class="tile-ingredients-title">
-                                <h3>Ingredients:</h3>
-                            </div>
-                            
-                            {% for ingr in items['recipe']['ingredientLines'] %}
-                                <div class="tile-ingredients">
-                                    <li>{{ ingr }}</li>
+                            <div class="tile-ingredients-wrapper">
+                                <div class="tile-ingredients-title">
+                                    <h3>Ingredients:</h3>
                                 </div>
-                            {% endfor %} 
+                                
+                                {% for ingr in items['recipe']['ingredientLines'] %}
+                                    <div class="tile-ingredients">
+                                        {{ ingr }}
+                                    </div>
+                                {% endfor %} 
+                            </div>
                         </div>
                         {% endfor %}
                     </div>

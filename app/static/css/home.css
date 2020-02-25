@@ -1,0 +1,9 @@
+.food-list {
+    border: 1px solid #3CB371 !important;
+    border-radius: 16px;
+    display: grid;
+}
+
+.food-type-list {
+
+}

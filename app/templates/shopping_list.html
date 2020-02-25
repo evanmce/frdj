@@ -2,5 +2,34 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
+    <div class="container">
+        <h1>Shopping List</h1>
+        {% if form %}
+            <div class="row">
+                <div class="col-md-4">
+                    {{ wtf.quick_form(form) }}
+                </div>
+            </div>
+        {% endif %}
+        <hr>
+        {% if shopping_list %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="list-group checked-list-box">
+                        {% for item in shopping_list %}
+                            <a href="#" type="checkbox" class="list-group-item list-group-item clearfix align-middle">
+                                {{ item.name }}
+                                <span class="pull-right">
+                                    <button type="button" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </span>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
 
+    </div>
 {% endblock %}

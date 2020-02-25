@@ -3,6 +3,7 @@
 
 {% block app_content %}
     <div class="container">
+        <h1>Recipes</h1>
         {% if form %}
             <div class="row">
                 <div class="col-md-4">
@@ -30,8 +31,14 @@
                             {% endfor %}
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <img src="{{ items['recipe']['image'] }}">
+                    <div class="col-md-4">
+                        <a href="{{ items['recipe']['url'] }}">
+                            <img src="{{ items['recipe']['image'] }}">
+                        </a>
+                        <hr>
+                        <button type="button" class="btn btn-danger">
+                            <i class="fas fa-heart"></i>
+                        </button>
                     </div>
                 </div>
             {% endfor %}

@@ -1,8 +1,8 @@
+from flask_login import current_user
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, Form
-from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Length
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, Form, IntegerField
+from wtforms.validators import DataRequired, ValidationError, Email, EqualTo, Length, NumberRange
 from app.models import User, Food, FoodTypes
-# from app.models import User, Food
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -32,3 +32,10 @@ class AddFoodForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired()])
     food_type = SelectField('Food Type', choices=FoodTypes)
     submit = SubmitField('Add Food')
+
+class RecipeSearchForm(FlaskForm):
+    query_text = SelectField('Food', validators=[DataRequired()], id='select_query')
+    num_recipes = IntegerField('Number of Recipes', validators=[DataRequired(), NumberRange(min=0, max=20)], default=1)
+    num_ingredients = IntegerField('Max Number of Ingredients', validators=[DataRequired(), NumberRange(min=5, max=25)], default=10)
+    diet = SelectField('Diet / Allergies', id='select_diet')
+    submit = SubmitField('Search Recipe')

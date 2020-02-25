@@ -25,6 +25,7 @@
                     {% if current_user.is_anonymous %}
                     <li><a href="{{ url_for('login') }}" class="navlink">Login</a></li>
                     {% else %}
+                    <li><a href="{{ url_for('recipe') }}" class="navlink">Recipes</a></li>
                     <li><a href="{{ url_for('logout') }}" class="navlink">Logout</a></li>
                     {% endif %}
                 </ul>
@@ -44,5 +45,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/navbar.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/forms.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/iconbox.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/recipe.css') }}">
     <script src="https://kit.fontawesome.com/aaedcd4e21.js" crossorigin="anonymous"></script>
+    <script src="https://developer.edamam.com/attribution/badge.js"></script>
 {% endblock %}

@@ -1,8 +1,14 @@
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, AddFoodForm
+from app.forms import LoginForm, RegistrationForm, AddFoodForm, RecipeSearchForm
 from app.models import User, Food
-from flask import render_template, redirect, url_for, flash
+from flask import render_template, redirect, url_for, flash, jsonify, Response
 from flask_login import current_user, login_user, logout_user, login_required
+import json
+from py_edamam import Edamam, PyEdamam
+import requests
+
+app_id = '9a9a5957'
+app_key = '61b6cec1a891846e2d03c6f53aecaeb2'
 
 #   ---------------------------------------------------------------------
 #   Login / Authentication
@@ -62,3 +68,21 @@ def index():
 @app.route('/about')
 def about():
     return render_template('about.html', title='About')
+
+@app.route('/recipe', methods=['GET', 'POST'])
+@login_required
+def recipe():
+    form = RecipeSearchForm(valid_user_id=current_user.username)
+    user = User.query.filter_by(username=current_user.username).first()
+    food_list = user.foods.all()
+    form.query_text.choices = [(f.name, f.name) for f in food_list]
+    form.diet.choices = [('balanced', 'Balanced'), ('high protein', 'High Protein'), ('low-fat', 'Low Fat'), 
+    ('low-carb', 'Low Carb'), ('vegan', 'Vegan'), ('vegetarian', 'Vegetarian'), ('sugar-conscious', 'Sugar Conscious'),
+    ('peanut-free', 'Peanut Free'), ('tree-nut-free', 'Tree Nut Free'), ('alcohol-free', 'Alcohol Free')]
+    if form.validate_on_submit():
+        r = requests.get(
+            'https://api.edamam.com/search?q={}&app_id={}&app_key={}&from=0&to={}&ingr={}&diet={}'.format(
+                form.query_text.data, app_id, app_key, form.num_recipes.data, form.num_ingredients.data, form.diet.data))     
+        recipes = json.loads(r.text)
+        return render_template('recipe.html', title='Recipes Found', recipes=recipes['hits'])
+    return render_template('recipe.html', title='Recipe', form=form)

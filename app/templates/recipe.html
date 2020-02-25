@@ -10,48 +10,33 @@
                 </div>
             </div>
         {% endif %}
-        <hr>
         {% if recipes %}
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="tile-container">
-                        {% for items in recipes %}
-                        <div class="tile-recipe">
-                            <div class="tile-title">
-                                <h2>{{ items['recipe']['label'] }}</h2>
-                            </div>
-                            
-                            <div class="tile-image">
-                                <img src="{{ items['recipe']['image'] }}" style="border-radius: 16px; max-height: 244px; max-width: 244px">
-                            </div>
-                            
-                            <div class="tile-info">
-                                <div class="tile-url">
-                                    <a href="{{ items['recipe']['url'] }}" class="btn btn-info" role="button" style="min-width: 210px">Recipe</a>
-                                </div>
-                                
-                                <div class="tile-servings">
-                                    Serving Size: {{ items['recipe']['yield']|round|int }}
-                                </div>
-                            </div>
-                            
-                            <div class="tile-ingredients-wrapper">
-                                <div class="tile-ingredients-title">
-                                    <h3>Ingredients:</h3>
-                                </div>
-                                
-                                {% for ingr in items['recipe']['ingredientLines'] %}
-                                    <div class="tile-ingredients">
-                                        {{ ingr }}
-                                    </div>
-                                {% endfor %} 
-                            </div>
+            {% for items in recipes %}
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="list-group">
+                            <a href="{{ items['recipe']['url'] }}" class="list-group-item list-group-item-action active">
+                                {{ items['recipe']['label'] }}
+                            </a>
+                            {% for ingr in items['recipe']['ingredientLines'] %}
+                                <a href="#" class="list-group-item list-group-item clearfix align-middle">
+                                    {{ ingr }}
+                                    <span class="pull-right">
+                                        <button type="button" class="btn btn-sm btn-success">
+                                            <i class="fas fa-cart-plus"></i>
+                                        </button>
+                                    </span>
+                                </a>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
+                    </div>
+                    <div class="col-md-6">
+                        <img src="{{ items['recipe']['image'] }}">
                     </div>
                 </div>
-            </div>
+            {% endfor %}
         {% endif %}
+        <hr>
         <div id="edamam-badge" data-color="white"></div>    
     </div>
 {% endblock %}

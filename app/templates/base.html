@@ -19,13 +19,15 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('index') }}" class="navlink">Home</a></li>
-                    <li><a href="{{ url_for('recipe') }}" class="navlink">Recipes</a></li>
+                    <li><a href="{{ url_for('about') }}" class="navlink">About</a></li>
+                    <li><a href="{{ url_for('contact') }}" class="navlink">Contact</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {% if current_user.is_anonymous %}
                     <li><a href="{{ url_for('login') }}" class="navlink">Login</a></li>
                     {% else %}
-                    <li><a href="{{ url_for('about') }}" class="navlink">About</a></li>
+                    <li><a href="{{ url_for('recipe', username) }}" class="navlink">Recipes</a></li>
+                    <li><a href="{{ url_for('settings') }}" class="navlink">Settings</a></li>
                     <li><a href="{{ url_for('logout') }}" class="navlink">Logout</a></li>
                     {% endif %}
                 </ul>

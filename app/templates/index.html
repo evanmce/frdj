@@ -4,9 +4,12 @@
 {% block app_content %}
 
     <div class="container">
-        <h1>Hi, {{ current_user.username }}</h1>
         {% if form %}
-            {{ wtf.quick_form(form) }}
+            <div class="row">
+                <div class="col-md-4">
+                    {{ wtf.quick_form(form) }}
+                </div>
+            </div>
         {% endif %}
         <hr>
         <div class= "row, fa-3x">
@@ -15,11 +18,21 @@
             </div>
         </div>
         <div id="fruit_collapse" class="row, panel-collapse collapse">
-            <ul class="list-group">
+            <div class="list-group">
                 {% for food in foods[0] %}
-                    <li class="list-group-item">{{ food.name }}</li>
+                    <a class="list-group-item list-group-item clearfix align-middle">
+                        {{ food.name }}
+                        <span class="pull-right">
+                            <button type="button" class="btn btn-sm btn-success">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </span>
+                    </a>
                 {% endfor %}
-            </ul>
+            </div>
         </div>
         <hr>
         <div class="row, fa-3x">
@@ -28,11 +41,21 @@
             </div>
         </div>
         <div id="vegetable_collapse" class="row, panel-collapse collapse">
-            <ul class="list-group">
+            <div class="list-group">
                 {% for food in foods[1] %}
-                    <li class="list-group-item">{{ food.name }}</li>
+                    <a class="list-group-item list-group-item clearfix">
+                        {{ food.name }}
+                        <span class="pull-right">
+                            <button type="button" class="btn btn-sm btn-success">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </span>
+                    </a>
                 {% endfor %}
-            </ul>
+            </div>
         </div>
         <hr>
         <div class="row, fa-3x">
@@ -41,11 +64,21 @@
             </div>
         </div>
         <div id="grain_collapse" class="row, panel-collapse collapse">
-            <ul class="list-group">
+            <div class="list-group">
                 {% for food in foods[2] %}
-                    <li class="list-group-item">{{ food.name }}</li>
+                    <a class="list-group-item list-group-item clearfix">
+                        {{ food.name }}
+                        <span class="pull-right">
+                            <button type="button" class="btn btn-sm btn-success">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </span>
+                    </a>
                 {% endfor %}
-            </ul>
+            </div>
         </div>
         <hr>
         <div class="row, fa-3x">
@@ -54,11 +87,21 @@
             </div>
         </div>
         <div id="meat_collapse" class="row, panel-collapse collapse">
-            <ul class="list-group">
+            <div class="list-group">
                 {% for food in foods[3] %}
-                    <li class="list-group-item">{{ food.name }}</li>
+                    <a class="list-group-item list-group-item clearfix">
+                        {{ food.name }}
+                        <span class="pull-right">
+                            <button type="button" class="btn btn-sm btn-success">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </span>
+                    </a>
                 {% endfor %}
-            </ul>
+            </div>
         </div>
         <hr> 
         <div class="row, fa-3x">
@@ -67,11 +110,21 @@
             </div>
         </div>
         <div id="seafood_collapse" class="row, panel-collapse collapse">
-            <ul class="list-group">
+            <div class="list-group">
                 {% for food in foods[4] %}
-                    <li class="list-group-item">{{ food.name }}</li>
+                    <a class="list-group-item list-group-item clearfix">
+                        {{ food.name }}
+                        <span class="pull-right">
+                            <button type="button" class="btn btn-sm btn-success">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </span>
+                    </a>
                 {% endfor %}
-            </ul>
+            </div>
         </div>
         <hr> 
         <div class="row, fa-3x">
@@ -80,11 +133,21 @@
             </div>
         </div>
         <div id="dairy_collapse" class="row, panel-collapse collapse">
-            <ul class="list-group">
+            <div class="list-group">
                 {% for food in foods[5] %}
-                    <li class="list-group-item">{{ food.name }}</li>
+                    <a class="list-group-item list-group-item clearfix">
+                        {{ food.name }}
+                        <span class="pull-right">
+                            <button type="button" class="btn btn-sm btn-success">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </span>
+                    </a>
                 {% endfor %}
-            </ul>
+            </div>
         </div>
         <hr>
         <div class="row, fa-3x">
@@ -93,11 +156,21 @@
             </div>
         </div>
         <div id="spices_collapse" class="row, panel-collapse collapse">
-            <ul class="list-group">
+            <div class="list-group">
                 {% for food in foods[6] %}
-                    <li class="list-group-item">{{ food.name }}</li>
+                    <a class="list-group-item list-group-item clearfix">
+                        {{ food.name }}
+                        <span class="pull-right">
+                            <button type="button" class="btn btn-sm btn-success">
+                                <i class="fas fa-pen"></i>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </span>
+                    </a>
                 {% endfor %}
-            </ul>
+            </div>
         </div>
         <hr>     
     </div>

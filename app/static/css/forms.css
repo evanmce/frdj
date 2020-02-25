@@ -5,7 +5,7 @@
     margin: 0 auto;
 }
 
-.btn:hover {
+.btn-primary:hover {
     background-color: #3CB371;
     color: white;
 }

@@ -39,3 +39,13 @@ class RecipeSearchForm(FlaskForm):
     num_ingredients = IntegerField('Max Number of Ingredients', validators=[DataRequired(), NumberRange(min=5, max=25)], default=10)
     diet = SelectField('Diet / Allergies', id='select_diet')
     submit = SubmitField('Search Recipe')
+
+class ContactForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    message = StringField('Message', validators=[DataRequired()])
+    submit = SubmitField('Contact Us')
+
+class SettingsForm(FlaskForm):
+    name = StringField('Name')
+    

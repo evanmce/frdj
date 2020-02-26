@@ -1,8 +1,9 @@
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, AddFoodForm, RecipeSearchForm, ContactForm, SettingsForm
 from app.models import User, Food, Recipe, FoodItem, ShoppingList
-from flask import render_template, redirect, url_for, flash, jsonify, Response
+from flask import render_template, redirect, url_for, flash, jsonify, Response, request
 from flask_login import current_user, login_user, logout_user, login_required
+import sys
 import json
 from py_edamam import Edamam, PyEdamam
 import requests
@@ -59,18 +60,29 @@ def recipe():
         return render_template('recipe.html', title='Recipes Found', recipes=recipes['hits'])
     return render_template('recipe.html', title='Recipe', form=form)
 
-@app.route('/shopping_list', methods=['GET', 'POST'])
+@app.route('/shopping_list', methods=['GET', 'POST', 'PUT'])
 @login_required
 def shopping_list():
     form = AddFoodForm()
     user = User.query.filter_by(username=current_user.username).first()
     shopping_list = user.shopping_list.first()
-    if form.validate_on_submit():
-        item = FoodItem(name=form.name.data, food_type=form.food_type.data, shopping_list_id=shopping_list.id)
-        db.session.add(item)
+    if request.method == "PUT":
+        print(request.args.get('item_id'), file=sys.stderr)
+        list_item = FoodItem.query.filter_by(id=request.args.get('item_id')).first()
+        print(list_item.name, file=sys.stderr)
+        db.session.delete(list_item)
         db.session.commit()
-        return redirect(url_for('shopping_list'))
-    return render_template('shopping_list.html', title='Shopping List', form=form, shopping_list=shopping_list.items.all())
+        return '200'
+    elif request.method == "POST" and form.validate_on_submit():
+        item_name = form.name.data
+        item_type = form.food_type.data
+        list_id = shopping_list.id
+        food_item = FoodItem(name=item_name, food_type=item_type, shopping_list_id=list_id)
+        db.session.add(food_item)
+        db.session.commit()
+        return jsonify({"item_id": food_item.id, "item_name": food_item.name})
+    else:
+        return render_template('shopping_list.html', title='Shopping List', form=form, shopping_list=shopping_list.items.all())
 
 @app.route('/settings', methods=['GET', 'POST'])
 @login_required

@@ -15,12 +15,18 @@
         {% if shopping_list %}
             <div class="row">
                 <div class="col-md-6">
-                    <div class="list-group checked-list-box">
+                    <div id="shopping_list_container"class="list-group checked-list-box">
                         {% for item in shopping_list %}
-                            <a href="#" type="checkbox" class="list-group-item list-group-item clearfix align-middle">
+                            <a id="item_id{{ item.id }}" href="#" type="checkbox" class="list-group-item list-group-item clearfix align-center">
                                 {{ item.name }}
                                 <span class="pull-right">
-                                    <button type="button" class="btn btn-sm btn-danger">
+                                    <button type="button" class="btn btn-sm btn-success">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-warning">
+                                        <i class="fas fa-pen"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-danger" onclick="removeItem({{ item.id }})">
                                         <i class="fas fa-trash"></i>
                                     </button>
                                 </span>
@@ -30,6 +36,5 @@
                 </div>
             </div>
         {% endif %}
-
     </div>
 {% endblock %}

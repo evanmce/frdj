@@ -51,5 +51,5 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('.static', filename='css/recipe.css') }}">
     <script src="https://kit.fontawesome.com/aaedcd4e21.js" crossorigin="anonymous"></script>
     <script src="https://developer.edamam.com/attribution/badge.js"></script>
-    <script src="{{ url_for('static', filename='js/shopping_list.js') }}"></script>
+    {% block scripts %}{% endblock %}
 {% endblock %}

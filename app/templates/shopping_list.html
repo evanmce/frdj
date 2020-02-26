@@ -38,3 +38,7 @@
         {% endif %}
     </div>
 {% endblock %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/shopping_list.js') }}"></script>
+{% endblock %}

@@ -5,175 +5,34 @@
 
     <div class="container">
         <h1>{{ current_user.username }}'s FRDJ</h1>
-        {% if form %}
-            <div class="row">
+        <div class="row">
+            {% if form %}
                 <div class="col-md-4">
                     {{ wtf.quick_form(form) }}
                 </div>
-            </div>
-        {% endif %}
-        <hr>
-        <div class= "row, fa-3x">
-            <div class="col-md-4, iconbox">
-                <i class="fas fa-apple-alt" data-toggle="collapse" href="#fruit_collapse"> Fruits</i>
-            </div>
-        </div>
-        <div id="fruit_collapse" class="row, panel-collapse collapse">
-            <div class="list-group">
-                {% for food in foods[0] %}
-                    <a class="list-group-item list-group-item clearfix align-middle">
-                        {{ food.name }}
-                        <span class="pull-right">
-                            <button type="button" class="btn btn-sm btn-warning">
-                                <i class="fas fa-pen"></i>
-                            </button>
-                            <button type="button" class="btn btn-sm btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </span>
-                    </a>
-                {% endfor %}
+            {% endif %}
+            <div class="col-md-8">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action active">Foods</a>
+                    {% for food_type in foods %}
+                        {% for food in food_type %}
+                            <a class="list-group-item list-group-item clearfix align-middle">
+                                {{ food.name }}
+                                <span class="pull-right">
+                                    <button type="button" class="btn btn-sm btn-warning">
+                                        <i class="fas fa-pen"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-sm btn-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </span>
+                            </a>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
             </div>
         </div>
         <hr>
-        <div class="row, fa-3x">
-            <div class="col-md-4, iconbox">
-                <i class="fas fa-carrot" data-toggle="collapse" href="#vegetable_collapse"> Vegetables</i>
-            </div>
-        </div>
-        <div id="vegetable_collapse" class="row, panel-collapse collapse">
-            <div class="list-group">
-                {% for food in foods[1] %}
-                    <a class="list-group-item list-group-item clearfix">
-                        {{ food.name }}
-                        <span class="pull-right">
-                            <button type="button" class="btn btn-sm btn-success">
-                                <i class="fas fa-pen"></i>
-                            </button>
-                            <button type="button" class="btn btn-sm btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </span>
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-        <hr>
-        <div class="row, fa-3x">
-            <div class="col-md-4, iconbox">
-                <i class="fas fa-bread-slice" data-toggle="collapse" href="#grain_collapse"> Grains</i>
-            </div>
-        </div>
-        <div id="grain_collapse" class="row, panel-collapse collapse">
-            <div class="list-group">
-                {% for food in foods[2] %}
-                    <a class="list-group-item list-group-item clearfix">
-                        {{ food.name }}
-                        <span class="pull-right">
-                            <button type="button" class="btn btn-sm btn-success">
-                                <i class="fas fa-pen"></i>
-                            </button>
-                            <button type="button" class="btn btn-sm btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </span>
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-        <hr>
-        <div class="row, fa-3x">
-            <div class="col-md-4, iconbox">
-                <i class="fas fa-drumstick-bite" data-toggle="collapse" href="#meat_collapse"> Meat</i>
-            </div>
-        </div>
-        <div id="meat_collapse" class="row, panel-collapse collapse">
-            <div class="list-group">
-                {% for food in foods[3] %}
-                    <a class="list-group-item list-group-item clearfix">
-                        {{ food.name }}
-                        <span class="pull-right">
-                            <button type="button" class="btn btn-sm btn-success">
-                                <i class="fas fa-pen"></i>
-                            </button>
-                            <button type="button" class="btn btn-sm btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </span>
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-        <hr> 
-        <div class="row, fa-3x">
-            <div class="col-md-4, iconbox">
-                <i class="fas fa-fish" data-toggle="collapse" href="#seafood_collapse"> Seafood</i>
-            </div>
-        </div>
-        <div id="seafood_collapse" class="row, panel-collapse collapse">
-            <div class="list-group">
-                {% for food in foods[4] %}
-                    <a class="list-group-item list-group-item clearfix">
-                        {{ food.name }}
-                        <span class="pull-right">
-                            <button type="button" class="btn btn-sm btn-success">
-                                <i class="fas fa-pen"></i>
-                            </button>
-                            <button type="button" class="btn btn-sm btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </span>
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-        <hr> 
-        <div class="row, fa-3x">
-            <div class="col-md-4, iconbox">
-                <i class="fas fa-cheese" data-toggle="collapse" href="#dairy_collapse"> Dairy</i>
-            </div>
-        </div>
-        <div id="dairy_collapse" class="row, panel-collapse collapse">
-            <div class="list-group">
-                {% for food in foods[5] %}
-                    <a class="list-group-item list-group-item clearfix">
-                        {{ food.name }}
-                        <span class="pull-right">
-                            <button type="button" class="btn btn-sm btn-success">
-                                <i class="fas fa-pen"></i>
-                            </button>
-                            <button type="button" class="btn btn-sm btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </span>
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-        <hr>
-        <div class="row, fa-3x">
-            <div class="col-md-4, iconbox">
-                <i class="fas fa-pepper-hot" data-toggle="collapse" href="#spices_collapse"> Spices</i>
-            </div>
-        </div>
-        <div id="spices_collapse" class="row, panel-collapse collapse">
-            <div class="list-group">
-                {% for food in foods[6] %}
-                    <a class="list-group-item list-group-item clearfix">
-                        {{ food.name }}
-                        <span class="pull-right">
-                            <button type="button" class="btn btn-sm btn-success">
-                                <i class="fas fa-pen"></i>
-                            </button>
-                            <button type="button" class="btn btn-sm btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </span>
-                    </a>
-                {% endfor %}
-            </div>
-        </div>
-        <hr>     
     </div>
 {% endblock %}
 

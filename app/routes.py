@@ -67,9 +67,7 @@ def shopping_list():
     user = User.query.filter_by(username=current_user.username).first()
     shopping_list = user.shopping_list.first()
     if request.method == "PUT":
-        print(request.args.get('item_id'), file=sys.stderr)
         list_item = FoodItem.query.filter_by(id=request.args.get('item_id')).first()
-        print(list_item.name, file=sys.stderr)
         db.session.delete(list_item)
         db.session.commit()
         return '200'

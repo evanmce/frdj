@@ -21,7 +21,8 @@ window.addEventListener("DOMContentLoaded", function() {
             if (request.readyState === XMLHttpRequest.DONE) {
                 if (request.status === 200) {
                     console.log(request.response);
-                    let data = request.response;
+                    let data = JSON.parse(request.response);
+                    console.log(data);
                     let element = document.createElement("a");
                     element.id = data["item_id"];
                     element.setAttribute("href","#");
@@ -43,8 +44,6 @@ window.addEventListener("DOMContentLoaded", function() {
                     document.getElementById("shopping_list_container").appendChild(element);
                 }
             }
-        }
-
-        
+        }       
     });
 });
